@@ -11,22 +11,26 @@ function TodoApp() {
   };
 
   return (
-    <div style={{ maxWidth: 400, margin: "2rem auto", fontFamily: "Arial" }}>
+    <div>
       <h2>Simple To-Do List</h2>
+      <div className="input-group">
       <input
         type="text"
         placeholder="Enter a task"
         value={task}
         onChange={(e) => setTask(e.target.value)}
-        style={{ padding: "0.5rem", width: "70%" }}
+        onKeyDown={(e) => {
+            if(e.key === "Enter")
+                handleAdd();
+        }}
       />
-      <button onClick={handleAdd} style={{ padding: "0.5rem", marginLeft: 8 }}>
+      <button onClick={handleAdd}>
         Add
       </button>
-
-      <ul style={{ marginTop: "1rem" }}>
+</div>
+      <ul>
         {todos.map((todo, index) => (
-          <li key={index} style={{ padding: "0.25rem 0" }}>
+          <li key={index}>
             {todo}
           </li>
         ))}
